@@ -1,12 +1,13 @@
-import React from 'react';
-import InterviewSchedulerGlobty from './InterviewSchedulerGlobty';
-import { AvailabilityPanel } from './AvailabilityPanel';
+import GoogleLogin from "./GoogleLogin.jsx";
 
-export default function App() {
-  const env = typeof window !== 'undefined' && window.__ENV ? window.__ENV : {};
+function App() {
   return (
-    <div>
-      <InterviewSchedulerGlobty clientId={env.REACT_APP_GOOGLE_CLIENT_ID} apiKey={env.REACT_APP_GOOGLE_API_KEY} availabilityApiUrl={env.AVAILABILITY_API_URL} />
+    <div style={{ padding: "2rem", textAlign: "center" }}>
+      <h1>Agenda Globty</h1>
+      <p>Login con Google para acceder al calendario</p>
+      <GoogleLogin />
     </div>
   );
 }
+
+export default App;
