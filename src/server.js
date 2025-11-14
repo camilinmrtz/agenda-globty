@@ -6,16 +6,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const CLIENT_ID = "TU_CLIENT_ID.apps.googleusercontent.com";
+const CLIENT_ID = "876736803998-c86thjpgvlijqafimud2pskgurd7njfu.apps.googleusercontent.com";
 const CLIENT_SECRET = "TU_CLIENT_SECRET";
-const REDIRECT_URI = "http://localhost:3000/oauth2callback"; // puede ser otro dominio
+const REDIRECT_URI = "http://localhost:3000/oauth2callback"; 
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLIENT_SECRET,
   REDIRECT_URI
 );
 
-// Endpoint para generar URL de autorización
+
 app.get("/auth/url", (req, res) => {
   const scopes = ["https://www.googleapis.com/auth/calendar"];
   const url = oAuth2Client.generateAuthUrl({
@@ -25,7 +25,7 @@ app.get("/auth/url", (req, res) => {
   res.json({ url });
 });
 
-// Endpoint para recibir el código de Google y devolver token
+
 app.post("/auth/token", async (req, res) => {
   const { code } = req.body;
   try {
@@ -37,7 +37,7 @@ app.post("/auth/token", async (req, res) => {
   }
 });
 
-// Endpoint ejemplo: listar eventos
+
 app.get("/calendar/events", async (req, res) => {
   try {
     const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
